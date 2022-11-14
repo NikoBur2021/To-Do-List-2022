@@ -1,0 +1,21 @@
+.sideBar{
+    background-color: gray;
+    width: 300px;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top:0;
+    display: none;
+}
+.show{
+    display: block;
+}
+.list li> span{
+    padding: 3px;
+}
+.container span{
+    padding: 3px;
+}
+.container{
+    display: flex;
+}
