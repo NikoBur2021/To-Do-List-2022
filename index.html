@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <button class="add">Add</button>
-    <span>To create a new note, please click on the button 'Add'</span>
+<div class="header">
+    <h1>My To Do List</h1>
+    <button class="btnAdd button4">
+        Add new note
+    </button>
 </div>
-<ul class="list"></ul>
 <div class="sideBar">
     <input class="date" type="date">
-    <input class="text" type="text">
-    <button class="save">Save</button>
+    <input class="text" type="text" placeholder="place your text here">
+    <button class="btnSave">Save</button>
 </div>
+<ul class="list"></ul>
+
 <script src="index.js" type="module"></script>
 </body>
 </html>
