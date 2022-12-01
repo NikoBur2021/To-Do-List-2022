@@ -1,71 +1,82 @@
-const add = document.querySelector('.add')
 const sideBar = document.querySelector('.sideBar')
-const date = document.querySelector('.date')
-const text = document.querySelector('.text')
-const save = document.querySelector('.save')
+const btnAdd =  document.querySelector('.btnAdd')
+const dateInp = document.querySelector('.date')
+const textInp = document.querySelector('.text')
+const btnSave = document.querySelector('.btnSave')
 const list = document.querySelector('.list')
 
+let arr = []
+let conditionBtnSave = false
+let currentIndex
 
-add.onclick=()=>{
+btnAdd.onclick=()=>{
     sideBar.classList.toggle('show')
 }
 
-let arr = []
-let currentEdit = false
-let currentIndex
-
-save.onclick=()=>{
-    if(currentEdit === true){
-        arr[currentIndex].date = date.value
-        arr[currentIndex].text = text.value
-        list.children[currentIndex].children[0].textContent = date.value
-        list.children[currentIndex].children[1].textContent = text.value
+btnSave.onclick=()=>{
+    if(conditionBtnSave === true){
+        arr[currentIndex].date = dateInp.value
+        arr[currentIndex].text = textInp.value
+        list.children[currentIndex].children[0].textContent = dateInp.value
+        list.children[currentIndex].children[1].textContent = textInp.value
+        conditionBtnSave = false
+        dateInp.value = ''
+        textInp.value = ''
     }else{
-        console.log('ADD')
-        const dateIn = date.value
-        const textIn = text.value
+        oneNote(dateInp.value,textInp.value,arr.length)
         arr.push({
-            date: dateIn,
-            text: textIn
+            date: dateInp.value,
+            text: textInp.value
         })
-        oneNote(dateIn,textIn)
+        console.log('add')
     }
+    sideBar.classList.remove('show')
     myLocalStorage()
 }
 
-let data = localStorage.getItem('list')
+const data = localStorage.getItem('list')
 if(data){
     arr = JSON.parse(data)
     for(let i=0; i<arr.length; i++){
         oneNote(arr[i].date,arr[i].text,i)
     }
+
+    myLocalStorage()
 }
 
-function myLocalStorage(){
-    let data = JSON.stringify(arr)
-    localStorage.setItem('list',data)
-}
-
-function oneNote(dateIn,textIn,i){
+function oneNote(date,text,index){
     const li = document.createElement('li')
     const spanDate = document.createElement('span')
     const spanText = document.createElement('span')
     const edit = document.createElement('button')
-    spanDate.textContent = dateIn
-    spanText.textContent = textIn
-    edit.textContent = 'Edit'
+    const myDelete = document.createElement('button')
+    spanDate.style.padding = '5px'
+    spanDate.textContent = date
+    spanText.textContent = text
+    edit.innerHTML = '&#9998'
+    myDelete.innerHTML = '&#x2715;'
     list.appendChild(li)
     li.appendChild(spanDate)
     li.appendChild(spanText)
     li.appendChild(edit)
+    li.appendChild(myDelete)
     edit.onclick=()=>{
+        dateInp.value = date
+        textInp.value = text
         sideBar.classList.add('show')
-        date.value = dateIn
-        text.value = textIn
-        currentEdit = true
-        currentIndex = i
+        conditionBtnSave = true
+        currentIndex = index
     }
-    myLocalStorage()
+    myDelete.onclick=()=>{
+        li.remove()
+        arr.splice(index,1)
+        myLocalStorage()
+    }
+}
+
+function myLocalStorage(){
+    const data = JSON.stringify(arr)
+    localStorage.setItem('list',data)
 }
 
 
