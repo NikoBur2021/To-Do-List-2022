@@ -1,21 +1,83 @@
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+*, :before, :after {
+    box-sizing: border-box;
+}
+.btnAdd{
+    background-color: white;
+    border: 2px solid #e7e7e7;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button4 {
+    color: black;
+}
+
+.btnAdd:hover {background-color: #e7e7e7;}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f44336;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+}
 .sideBar{
+    /*padding: 30px;*/
     background-color: gray;
-    width: 300px;
-    height: 100vh;
-    position: absolute;
-    right: 0;
-    top:0;
+    /*width: 100%;*/
     display: none;
 }
 .show{
-    display: block;
-}
-.list li> span{
-    padding: 3px;
-}
-.container span{
-    padding: 3px;
-}
-.container{
     display: flex;
+}
+.list li>span{
+    padding: 2px;
+}
+.date{
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 25%;
+}
+.text {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 50%;
+
+}
+
+.btnSave {
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+
+}
+
+.sideBar input,.sideBar button{
+    font-family: Arial;
+    padding: 5px;
+    font-size: 16px;
+    display: inline-block;
+    border: 1px solid gray;
+}
+
+.btnSave:hover {
+    background-color: #bbb;
 }
